@@ -1,6 +1,7 @@
-## Python
+# Code instructions and snippets
 
-Sections
+## Sections
+
 Python
 - [Create a pipenv](#create-a-pipenv)
 - [Install dependencies for a Python project](#install-dependencies-for-a-python-project)
@@ -9,6 +10,7 @@ AWS
 - [Deploy AWS Lambda function in Python](#deploy-a-python-aws-lambda-function)
 
 
+## Python
 ### Create a pipenv 
 (Python virtual environment)
 
