@@ -7,7 +7,7 @@ Python
 - [Install dependencies for a Python project](#install-dependencies-for-a-python-project)
 
 AWS
-- [Deploy AWS Lambda function in Python](#deploy-a-python-aws-lambda-function)
+- [Deploy AWS Lambda function in Python](#deploy-aws-lambda-function-in-python)
 
 
 ## Python
@@ -44,7 +44,7 @@ $ pip install -r requirements.txt
 
 ## AWS 
 
-### Deploy AWS Lambda function (Python)
+### Deploy AWS Lambda function in Python
 1. Create a Deployment Directory: Create a directory to store the packages and code.
 ```
 mkdir deployment_package
