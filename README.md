@@ -45,6 +45,8 @@ $ pip install -r requirements.txt
 ## AWS 
 
 ### Build and Deploy AWS Lambda function in Python
+Note: Can put commands below in a bash script "build.sh", then execute using $bash build.sh
+
 1. Create a Deployment Directory: Create a directory to store the packages and code.
 ```
 mkdir deployment_package
