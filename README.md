@@ -60,14 +60,16 @@ cp -r myenv/lib/python3.x/site-packages/* deployment_package/
 
 ```
 
-3. Add Your Code: Copy your Python files (e.g., lambda_function.py, llm_service.py, etc.) into the deployment package directory.
+3. Add Your Code: Copy your Python files (e.g., lambda_function.py, llm_service.py, etc.) into the deployment package directory. Or can add Python files into src/ folder, so use second command
 ```
 $ cp lambda_function.py llm_service.py deployment_package/
+OR
+$ cp -r src/* deployment_package/
 ```
-4. Zip the Deployment Package: Navigate to the deployment package directory and create a ZIP file.
+4. Zip the Deployment Package: Navigate to the deployment package directory and create a ZIP file. 
 ```
 $ cd deployment_package
-$ zip -r ../lambda.zip .
+$ zip -r9 ../lambda.zip .
 $ cd ..
 ```
 
