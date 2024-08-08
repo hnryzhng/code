@@ -73,4 +73,27 @@ $ zip -r9 ../lambda.zip .
 $ cd ..
 ```
 
-5. Upload ZIP file using AWS console in Lambda dashboard 
+5. Upload ZIP file using AWS console in Lambda dashboard
+
+## Bash shell scripts for Python
+
+1. Initialize Python project
+ ```
+ #!/bin/bash
+
+# init.sh
+
+# Create a virtual environment
+python3 -m venv virtualenv
+
+# Activate the virtual environment
+source virtualenv/bin/activate
+
+# Install dependencies
+pip3 install -r requirements.txt
+
+# Create deployment directory for Python files and installed dependencies site-packages
+mkdir deployment_package/
+ ```
+
+2. 
