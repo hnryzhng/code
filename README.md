@@ -9,6 +9,8 @@ Python
 AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
 
+Bash scripts
+- [Bash scripts for Python project](#bash-scripts-for-python-project)
 
 ## Python
 ### Create a pipenv 
@@ -75,9 +77,9 @@ $ cd ..
 
 5. Upload ZIP file using AWS console in Lambda dashboard
 
-## Bash shell scripts for Python
+## Bash scripts for Python project
 
-1. Initialize Python project
+a. Initialize Python project: $ bash init.sh
  ```
  #!/bin/bash
 
@@ -96,4 +98,60 @@ pip3 install -r requirements.txt
 mkdir deployment_package/
  ```
 
-2. 
+b. Build Python Lambda function: $ bash build.sh 
+```
+#!/bin/bash
+
+# build.sh
+
+cp -r virtualenv/lib/python3.12/site-packages/* deployment_package/
+echo "copy files from installed package dependencies into deployment package"
+
+cp -r src/* deployment_package/
+echo "copy Python files into deployment package"
+
+cd deployment_package
+echo "cd into deployment_package dir"
+
+zip -r9 ../lambda.zip .
+echo "zipped lambda package for deployment"
+```
+
+c. Run Python file in virtual environment: $ bash run.sh VIRTUAL_ENV_DIR_NAME PYTHON_FILE
+
+```
+#!/bin/bash
+
+# run.sh
+
+# Check if the correct number of arguments is provided
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 <path_to_virtualenv> <path_to_python_file>"
+  exit 1
+fi
+
+# Get the arguments
+VENV_PATH=$1
+PYTHON_FILE=$2
+
+# Check if the virtual environment directory exists
+if [ ! -d "$VENV_PATH" ]; then
+  echo "Error: Virtual environment directory not found at $VENV_PATH"
+  exit 1
+fi
+
+# Check if the Python file exists
+if [ ! -f "$PYTHON_FILE" ]; then
+  echo "Error: Python file not found at $PYTHON_FILE"
+  exit 1
+fi
+
+# Activate the virtual environment
+source "$VENV_PATH/bin/activate"
+
+# Run the Python file
+python3 "$PYTHON_FILE"
+
+# Deactivate the virtual environment
+deactivate
+```
