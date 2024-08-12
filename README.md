@@ -120,6 +120,10 @@ $ curl TARGET_URL
 
 ## Bash scripts for Python project
 
+```
+$ bash BASH_SCRIPT_FILE_NAME
+```
+
 a. Initialize Python project: $ bash init.sh
  ```
  #!/bin/bash
