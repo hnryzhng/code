@@ -83,7 +83,7 @@ $ cd ..
 
 ## Linux commands cheatsheet
 
-### File and Directory navigation commands
+### File and Directory Navigation commands
 ```
 $ cd ~ # move to home directory
 $ cd PATH # move to specified path
@@ -93,7 +93,7 @@ $ chmod <subcommand> FILENAME or DIR_NAME # change access permissions of file or
 
 ```
 
-### File and String manipulation commands
+### File and String Manipulation commands
 ```
 $ echo "body string" > OUTPUT_FILE_NAME
 $ cat 1.txt 2.txt 3.txt # merge 3 columns from each file
@@ -101,6 +101,7 @@ $ mkdir DIRECTORY_NAME
 $ touch FILE_NAME
 $ less FILE_NAME # show file within scrollable view
 $ more FILE_NAME # show file
+$ grep PATTERN FILE_NAME/DIR_NAME # outputs file or directory given a pattern to search
 
 
 ```
