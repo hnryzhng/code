@@ -83,6 +83,18 @@ $ cd ..
 
 ## Linux commands cheatsheet
 
+### File and String manipulation commands
+```
+$ echo "body string" > OUTPUT_FILE_NAME
+$ cat 1.txt 2.txt 3.txt # merge 3 columns from each file
+$ mkdir DIRECTORY_NAME
+$ touch FILE_NAME
+$ less FILE_NAME # show file within scrollable view
+$ more FILE_NAME # show file
+
+
+```
+
 ### Networking commands
 ```
 $ ping TARGET_URL
