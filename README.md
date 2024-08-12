@@ -9,7 +9,7 @@ Python
 AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
 
-Bash scripts
+Linux shell scripts
 - [Linux commands cheatsheet](#linux-commands-cheatsheet)
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
 
