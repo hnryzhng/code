@@ -85,7 +85,7 @@ $ cd ..
 
 ### File and Directory navigation commands
 ```
-$ cd ~ # move to root directory
+$ cd ~ # move to home directory
 $ cd PATH # move to specified path
 $ ls -a DIR_NAME # list all files in directory
 $ ls -l FILE_NAME or DIR_NAME # list access permissions
