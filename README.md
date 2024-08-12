@@ -90,12 +90,14 @@ $ cd PATH # move to specified path
 $ ls -a DIR_NAME # list all files in directory
 $ ls -l FILE_NAME or DIR_NAME # list access permissions
 $ chmod <subcommand> FILENAME or DIR_NAME # change access permissions of file or directory
+$ find FILENAME # find file in the directory
 
 ```
 
 ### File and String Manipulation commands
 ```
 $ echo "body string" > OUTPUT_FILE_NAME
+$ cp SOURCE_DIR_PATH TARGET_DIR_PATH # copy all files from source to target directories
 $ cat 1.txt 2.txt 3.txt # merge 3 columns from each file
 $ mkdir DIRECTORY_NAME
 $ touch FILE_NAME
