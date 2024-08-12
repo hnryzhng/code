@@ -10,6 +10,7 @@ AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
 
 Bash scripts
+- [Linux commands cheatsheet](#linux-commands-cheatsheet)
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
 
 ## Python
@@ -76,6 +77,21 @@ $ cd ..
 ```
 
 5. Upload ZIP file using AWS console in Lambda dashboard
+
+
+
+
+## Linux commands cheatsheet
+
+### Networking commands
+```
+$ ping TARGET_URL
+$ wget FILE_LOCATION
+$ curl TARGET_URL
+```
+
+
+
 
 ## Bash scripts for Python project
 
