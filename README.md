@@ -103,7 +103,7 @@ $ mkdir DIRECTORY_NAME
 $ touch FILE_NAME
 $ less FILE_NAME # show file within scrollable view
 $ more FILE_NAME # show file
-$ grep PATTERN FILE_NAME/DIR_NAME # outputs file or directory given a pattern to search
+$ grep STRING_PATTERN FILE_NAME # outputs line within file given a pattern to search
 
 
 ```
