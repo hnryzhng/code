@@ -96,8 +96,10 @@ $ find FILENAME # find file in the directory
 
 ### File and String Manipulation commands
 ```
-$ echo "body string" > OUTPUT_FILE_NAME
+
 $ cp SOURCE_DIR_PATH TARGET_DIR_PATH # copy all files from source to target directories
+$ echo "body string" > OUTPUT_FILE_NAME
+$ cat <<EOF>> OUTPUT_FILE_NAME # multi-line write to a file, end with "EOF"
 $ cat 1.txt 2.txt 3.txt # merge 3 columns from each file
 $ mkdir DIRECTORY_NAME
 $ touch FILE_NAME
