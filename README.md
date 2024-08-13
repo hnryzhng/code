@@ -89,6 +89,7 @@ $ cd ~ # move to home directory
 $ cd PATH # move to specified path
 $ ls -a DIR_NAME # list all files in directory
 $ ls -l FILE_NAME or DIR_NAME # list access permissions
+$ ls -r # lists recursively all directories, subdirectories, and files in a tree-like representation
 $ chmod <subcommand> FILENAME or DIR_NAME # change access permissions of file or directory
 $ find FILENAME # find file in the directory
 
