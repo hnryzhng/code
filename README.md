@@ -117,6 +117,7 @@ $ grep STRING_PATTERN FILE_NAME # outputs line within file given a pattern to se
 $ ls -r # list files and subdirectories within directory
 $ tar -cf FILE.tar SOURCE_DIRECTORY # creates a .tar file for the directory (contains files and subdirectories)
 $ tar -czf FILE.tar.gz SOURCE_DIRECTORY # creates a compressed (gzipped) .tar.gz file
+
 $ tar -tf FILE.tar # lists all files and directories within .tar file
 
 $ tar -xf FILE.tar TARGET_DIRECTORY # de-archive/extract/unpack contents of .tar file into a destination directory, preserving the directory hierarchy
@@ -130,6 +131,11 @@ $ tar -xzf FILE.tar.gz DESTINATION_DIRECTORY # de-archive compressed .tar file
 
 $ zip -r FILE.zip SOURCE_DIRECTORY # creates zipped file from source directory
 $ unzip FILE.zip # unzip -> unpacks and decompresses files
+
+
+$ tar -czf FILE.tar.gz SOURCE_DIRECTORY # creates a compressed (gzipped) .tar.gz file
+$ tar -xzf FILE.tar.gz DESTINATION_DIRECTORY # de-archive compressed .tar file
+
 
 ```
 
