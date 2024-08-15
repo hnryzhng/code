@@ -83,6 +83,21 @@ $ cd ..
 
 ## Linux commands cheatsheet
 
+### General OS commands
+```
+$ whoami # prints current username
+$ id # list users and user groups in system
+$ uname # print basic system info
+$ df # check system disk usage
+$ date # current date and time
+$ man COMMAND # read manual for command
+
+# monitor processes
+$ ps
+$ top # more detailed ps info
+
+```
+
 ### File and Directory Navigation commands
 ```
 $ cd ~ # move to home directory
