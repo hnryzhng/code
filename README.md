@@ -172,6 +172,24 @@ $ curl TARGET_URL
 ```
 
 
+## Shell scripting
+```
+# Pipes
+$ COMMAND_1 | COMMAND_2 # output of command 1 input to command 2
+$ ls | sort -r # lists files in dir and reverse sorts 
+
+# Shell variables - limited to shell
+$ set # lists all shell variables
+$ SHELL_VAR=VALUE # define shell variable
+$ echo $SHELL_VAR # prints value for shell variable
+$ unset SHELL_VAR # deletes shell variable
+
+# Environment variables
+
+
+```
+
+
 
 
 ## Bash scripts for Python project
