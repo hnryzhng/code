@@ -107,8 +107,13 @@ $ cd PATH # move to specified path
 $ ls -a DIR_NAME # list all files in directory
 $ ls -l FILE_NAME or DIR_NAME # list access permissions
 $ ls -r # lists recursively all directories, subdirectories, and files in a tree-like representation
-$ chmod <subcommand> FILENAME or DIR_NAME # change access permissions of file or directory
 $ find FILENAME # find file in the directory
+
+$ chmod <subcommand> FILENAME or DIR_NAME # change access permissions of file or directory
+$ chmod +x FILENAME # make file executable
+$ chmod +(w/r/x) FILENAME # add write, read or executable permissions
+$ chmod -(w/r/x) FILENAME # take away write, read or executable permissions
+
 
 ```
 
