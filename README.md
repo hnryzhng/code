@@ -173,18 +173,24 @@ $ curl TARGET_URL
 
 
 ## Shell scripting
+Filters are shell commands
 ```
 # Pipes
 $ COMMAND_1 | COMMAND_2 # output of command 1 input to command 2
 $ ls | sort -r # lists files in dir and reverse sorts 
 
-# Shell variables - limited to shell
+# Shell variables
+(scope limited to shell)
 $ set # lists all shell variables
 $ SHELL_VAR=VALUE # define shell variable
 $ echo $SHELL_VAR # prints value for shell variable
 $ unset SHELL_VAR # deletes shell variable
 
 # Environment variables
+(scope extends beyond shell session)
+$ env # lists all env vars
+$ export VAR_NAME # exports var to env variable
+$ env | grep "GREE" # can chain commands using pipe to filter for env var(s) using grep
 
 
 ```
