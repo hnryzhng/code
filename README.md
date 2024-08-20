@@ -220,17 +220,17 @@ fi
 <=	is less than or equal to
 >=	is greater than or equal to
 
-Arithmetic calculations
+# Arithmetic calculations
 # Integer arithmetic notation: $(())
 # example: echo $((-1*-2))
 
-Arrays
+# Arrays
 $ my_array=(1 2 "three" "four" 5)
 $ my_array+=7
 $ my_array+="six"
 $ my_array=($(echo $(cat column.txt))) # Declare an array and load it with lines of text from a file
 
-Loops
+# Loops
 
 for item in ${my_array[@]}; do
   echo $item
