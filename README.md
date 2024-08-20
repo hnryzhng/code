@@ -122,7 +122,8 @@ $ chmod -(w/r/x) FILENAME # take away write, read or executable permissions
 
 $ cp SOURCE_DIR_PATH TARGET_DIR_PATH # copy all files from source to target directories
 $ mv SOURCE_DIR_PATH TARGET_DIR_PATH # move all files from source to target directories
-$ echo "body string" > OUTPUT_FILE_NAME
+$ echo "body string" > OUTPUT_FILE_NAME # create file initialized with string
+$ echo "body string 2" >> OUTPUT_FILE_NAME # append to existing file
 $ cat <<EOF>> OUTPUT_FILE_NAME # multi-line write to a file, end with "EOF"
 $ cat 1.txt 2.txt 3.txt # merge 3 columns from each file
 $ mkdir DIRECTORY_NAME
@@ -187,12 +188,56 @@ $ set # lists all shell variables
 $ SHELL_VAR=VALUE # define shell variable
 $ echo $SHELL_VAR # prints value for shell variable
 $ unset SHELL_VAR # deletes shell variable
+$ VAR1 = $(command) # executes command then stores output in the variable
+# example: NOW = $(date)
 
 # Environment variables
 (scope extends beyond shell session)
 $ env # lists all env vars
 $ export VAR_NAME # exports var to env variable
 $ env | grep "GREE" # can chain commands using pipe to filter for env var(s) using grep
+
+
+```
+
+### Shell scripting logic
+[Coursera's shell scripting logic cheatsheet](https://author-ide.skills.network/render?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZF9pbnN0cnVjdGlvbnNfdXJsIjoiaHR0cHM6Ly9jZi1jb3Vyc2VzLWRhdGEuczMudXMuY2xvdWQtb2JqZWN0LXN0b3JhZ2UuYXBwZG9tYWluLmNsb3VkL0lCTS1MWDAxMTdFTi1Ta2lsbHNOZXR3b3JrL2xhYnMvdjRfbmV3X2NvbnRlbnQvbGFicy9yZWFkaW5ncy9NM19DaGVhdF9TaGVldF9JbnRyb190b19TaGVsbF9TY3JpcHRpbmcubWQiLCJ0b29sX3R5cGUiOiJpbnN0cnVjdGlvbmFsLWxhYiIsImFkbWluIjpmYWxzZSwiaWF0IjoxNzExNjM4NjQxfQ.a5rAy3qDmGekAMX0CfgHEIBiX3QDzC9e4UuP9s2idzg)
+```
+# Conditionals
+if [[ $# == 2 ]]
+then
+  echo "number of arguments is equal to 2"
+else
+  echo "number of arguments is not equal to 2"
+fi
+
+# Logical operators
+==	is equal to
+!=	is not equal to
+<	is less than
+>	is greater than
+<=	is less than or equal to
+>=	is greater than or equal to
+
+Arithmetic calculations
+# Integer arithmetic notation: $(())
+# example: echo $((-1*-2))
+
+Arrays
+$ my_array=(1 2 "three" "four" 5)
+$ my_array+=7
+$ my_array+="six"
+$ my_array=($(echo $(cat column.txt))) # Declare an array and load it with lines of text from a file
+
+Loops
+
+for item in ${my_array[@]}; do
+  echo $item
+done
+
+for i in {0..6}; do
+    echo ${my_array[$i]}
+done
 
 
 ```
