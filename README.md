@@ -174,6 +174,8 @@ $ curl TARGET_URL
 
 ## Shell scripting
 Filters are shell commands
+
+### Shell scripting basics
 ```
 # Pipes
 $ COMMAND_1 | COMMAND_2 # output of command 1 input to command 2
@@ -193,6 +195,24 @@ $ export VAR_NAME # exports var to env variable
 $ env | grep "GREE" # can chain commands using pipe to filter for env var(s) using grep
 
 
+```
+
+### Scheduling jobs
+- Cron: service that runs jobs
+- Crond: interpretese crontab files
+- Crontab: file that contains jobs and schedule data
+```
+
+$ crontab -e # open crontab text file in CLI text editor
+# crontab - l # list all cron jobs and their schedules
+# syntax for cron jobs
+# m h dom mon dow command 
+
+# example crontab file
+# m h dom mon dow command
+30 15  *   *   0  date >> path/sundays.txt # on Sundays at 15:30, execute command to write date to the target file
+
+0 0 * * *         /cron_scripts/load_data.sh # at midnight every day, execute load_data.sh
 ```
 
 
