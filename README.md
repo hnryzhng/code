@@ -11,6 +11,7 @@ AWS
 
 Linux shell scripts
 - [Linux commands cheatsheet](#linux-commands-cheatsheet)
+- [Shell scripting](#shell-scripting)
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
 
 ## Python
