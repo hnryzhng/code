@@ -261,7 +261,48 @@ $ crontab -e # open crontab text file in CLI text editor
 0 0 * * *         /cron_scripts/load_data.sh # at midnight every day, execute load_data.sh
 ```
 
+### Shell scripting ETL example: Weather report
+Adapted from Coursera's Linux commands course, module: "Hands-on Lab: Historical Weather Forecast Comparison to Actuals"
+```
+#! /bin/bash
 
+# Lab goal: Create a Bash script to extract, transform, and load weather data, then write a script to measure forecast accuracy.
+# temperatures.txt contain weather report data, rx_poc.log contains records that compares the day's temperature with the next day's forecasted temperature
+
+# create datestamped filename for the raw wttr data
+today=$(date +%Y%m%d)   # store today's date 
+weather_report=raw_data_$today
+
+# download today's weather report for the specified city
+city=Casablanca
+domain=wttr.in
+curl $domain/$city --output $weather_report # output crawled response data to weather report shell variable
+
+# use command substitution to store the current day, month, and year in corresponding shell variables
+hour=$(TZ='Morocco/Casablanca' date -u +%H) 
+day=$(TZ='Morocco/Casablanca' date -u +%d) 
+month=$(TZ='Morocco/Casablanca' date +%m)
+year=$(TZ='Morocco/Casablanca' date +%Y)
+
+# extract all lines containing temperatures from the raw weather report and write to file temperatures.txt
+file=temperatures.txt
+grep °C $weather_report > $file
+
+# extract the current temperature 
+obs_tmp=$(head -1 $file | tr -s " " | xargs | rev | cut -d " " -f2 | rev)   # string processing
+
+# extract the forecast for noon tomorrow
+fc_temp=$(head -3 $file | tail -1 | tr -s " " | xargs | cut -d "C" -f2 | rev | cut -d " " -f2 |rev) # more string processing
+
+# Create records for rx_poc.log, which compares current temperature with tomorrow's forecasted temperature
+# Create header for rx_poc.log
+header=$(echo -e "year\tmonth\tday\thour_UTC\tobs_tmp\tfc_temp")
+echo $header>rx_poc.log
+
+# Create a tab-delimited record for rx_poc.log
+record=$(echo -e "$year\t$month\t$day\t$obs_tmp\t$fc_temp")
+echo $record>>rx_poc.log    # append to existing header
+```
 
 
 ## Bash scripts for Python project
