@@ -103,6 +103,8 @@ $ top # more detailed ps info
 
 ### File and Directory Navigation commands
 ```
+
+$ pwd  # absolute path to current directory (present working directory)
 $ cd ~ # move to home directory
 $ cd PATH # move to specified path
 $ ls -a DIR_NAME # list all files in directory
