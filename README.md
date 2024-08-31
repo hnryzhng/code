@@ -12,6 +12,7 @@ AWS
 Linux shell scripts
 - [Linux commands cheatsheet](#linux-commands-cheatsheet)
 - [Shell scripting](#shell-scripting)
+- [Bash scripts for ETL](#bash-scripts-for-python-project)
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
 
 ## Python
@@ -261,6 +262,66 @@ $ crontab -e # open crontab text file in CLI text editor
 30 15  *   *   0  date >> path/sundays.txt # on Sundays at 15:30, execute command to write date to the target file
 
 0 0 * * *         /cron_scripts/load_data.sh # at midnight every day, execute load_data.sh
+```
+
+### Shell scripting ETL example: Earthquake data
+```
+#!/bin/bash
+
+# Extract
+extracted_file_name="earthquakes.csv"
+source_data_url=https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv
+echo "retrieving csv data from url: $source_data_url"
+wget -O $extracted_file_name $source_data_url
+
+# Transform
+# get columns (time, latitude, longitude, magnitude, place)
+staging_file_name="earthquakes-staging.csv"
+delimiter=","
+fields=1,2,3,5,14
+echo "getting columns into staging: $(head -1 earthquakes.csv | cut -d $delimiter -f $fields)"
+cut -d $delimiter -f $fields $extracted_file_name > $staging_file_name # note: delimiter comma cuts off place because field value has commas within string
+
+# Load
+# load into target data destination, such as database or just another csv file
+# note: not applicable here, since staging and destination are the same csv file
+output_file_name="earthquakes-transformed.csv"
+echo "transforming into output file: $output_file_name"
+cp $staging_file_name $output_file_name
+
+
+```
+
+### Shell scripting ETL example: CSV to DB
+```
+#!/bin/bash
+
+# Course: ETL | Module 2 lab: https://www.coursera.org/learn/etl-and-data-pipelines-shell-airflow-kafka/ungradedLti/YhMiA/hands-on-lab-etl-using-shell-scripts
+
+# Extracts data (field columns 1,3,6) from /etc/passwd file into a CSV file.
+filename=/etc/passwd
+target_file=extracted-data.txt
+echo "extracting columns from $filename into $target_file"
+cut -d":" -f1,3,6 $filename > $target_file
+
+# The target csv data file contains the user name, user id and home directory of each user account defined in /etc/passwd
+# Transforms the text delimiter from ":" to ",".
+echo "transforming colons to commas in txt for csv"
+tr ":" "," < extracted-data.txt  > transformed-data.csv
+
+
+# Loads the data from the CSV file into a table in PostgreSQL database.
+echo "Loading data"
+# Set the PostgreSQL password environment variable.
+# Replace <yourpassword> with your actual PostgreSQL password.
+export PGPASSWORD=<PG_PASSWORD>; # TODO: for teaching only, do not expose in production
+# Send the instructions to connect to 'template1' and
+# copy the file to the table 'users' through command pipeline.
+echo "\c template1;\COPY users  FROM '/home/project/transformed-data.csv' DELIMITERS ',' CSV;" | psql --username=postgres --host=postgres
+
+# Validation: print users in table to ensure it's populated from CSV file
+echo "SELECT * FROM users;" | psql --username=postgres --host=postgres template1
+
 ```
 
 ### Shell scripting ETL example: Weather report
