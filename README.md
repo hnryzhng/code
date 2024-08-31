@@ -12,7 +12,7 @@ AWS
 Linux shell scripts
 - [Linux commands cheatsheet](#linux-commands-cheatsheet)
 - [Shell scripting](#shell-scripting)
-- [Bash scripts for ETL](#bash-scripts-for-python-project)
+- [Bash scripts for ETL](#bash-scripts-for-etl)
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
 
 ## Python
