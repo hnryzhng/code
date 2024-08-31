@@ -264,6 +264,8 @@ $ crontab -e # open crontab text file in CLI text editor
 0 0 * * *         /cron_scripts/load_data.sh # at midnight every day, execute load_data.sh
 ```
 
+## Bash scripts for ETL
+
 ### Shell scripting ETL example: Earthquake data
 ```
 #!/bin/bash
