@@ -16,7 +16,7 @@ Linux shell scripts
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
 
 Apache Airflow
-- [Airflow DAG example](airflow-dag-example)
+- [Airflow DAG example](#airflow-dag-example)
 
 ## Python
 ### Create a pipenv 
@@ -457,6 +457,8 @@ deactivate
 ```
 
 ## Apache Airflow
+Batch processing platform
+
 DAG defines the workflow
 DAG -> Tasks -> Operators
 
