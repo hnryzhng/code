@@ -18,6 +18,9 @@ Linux shell scripts
 Apache Airflow
 - [Airflow DAG example](#airflow-dag-example)
 
+Docker
+- [Docker commands cheatsheet](#docker-commands-cheatsheet)
+
 ## Python
 ### Create a pipenv 
 (Python virtual environment)
@@ -583,3 +586,29 @@ execute_extract >> execute_transform >> execute_load >> execute_check
 
 ```
 
+## Docker
+### Docker commands cheatsheet
+
+- Overview: Dockerfile -> Image -> Container
+- Detailed: Dockerfile -> ($ docker build ROOT_PROJECT_PATH) ->  Docker Image -> ($ docker run IMAGE_NAME; if not on machine, $docker pull) -> Docker Container    
+
+```
+# Images #
+$ docker images   # lists images on machine
+$ docker pull IMAGE_NAME  # pulls Docker image from DockerHub registry, latest version of image if unspecified (e.g., node, ubuntu)
+$ docker rmi IMAGE_NAME $ delete images and dependencies on machine
+
+# Containers #
+$ docker ps # lists running containers
+$ docker ps -a # lists all containers (including stopped/exited containers)
+$ docker run IMAGE_NAME # create and run container from image, pulls image from DockerHub registry if not on machine
+$ docker stop CONTAINER_NAME  # stops particular container
+$ docker rm CONTAINER_NAME # delete container from machine
+
+$ docker run IMAGE_NAME <COMMANDS_FOR_IMAGE> # runs commands for container created from image upon starting container (e.g., docker run ubuntu sleep 100 -> runs Ubuntu container with command "sleep 100")
+$ docker run -d IMAGE_NAME # runs container in background
+
+$ docker execute CONTAINER_NAME <COMMANDS_FOR_IMAGE>   # executes commands for running container (e.g., docker execute ubuntu_container_name cat file.txt)
+
+
+```
