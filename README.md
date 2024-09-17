@@ -590,15 +590,15 @@ execute_extract >> execute_transform >> execute_load >> execute_check
 ### Docker commands cheatsheet
 
 - Overview: Dockerfile -> Image -> Container
-- Detailed: Dockerfile -> ($ docker build ROOT_PROJECT_PATH) ->  Docker Image -> ($ docker run IMAGE_NAME; if not on machine, $docker pull) -> Docker Container    
+- Detailed: Dockerfile -> ($ docker build ROOT_PROJECT_PATH) ->  Docker Image -> ($ docker run IMAGE_NAME; if not on machine, $ docker pull IMAGE_NAME) -> Docker Container    
 
 ```
-# Images #
+# Images
 $ docker images   # lists images on machine
 $ docker pull IMAGE_NAME  # pulls Docker image from DockerHub registry, latest version of image if unspecified (e.g., node, ubuntu)
 $ docker rmi IMAGE_NAME $ delete images and dependencies on machine
 
-# Containers #
+# Containers
 $ docker ps # lists running containers
 $ docker ps -a # lists all containers (including stopped/exited containers)
 $ docker run IMAGE_NAME # create and run container from image, pulls image from DockerHub registry if not on machine
