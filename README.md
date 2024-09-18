@@ -601,13 +601,21 @@ $ docker rmi IMAGE $ delete images and dependencies on machine
 # Containers
 $ docker ps # lists running containers
 $ docker ps -a # lists all containers (including stopped/exited containers)
+$ docker inspect CONTAINER_NAME/CONTAINER_ID  # shows detailed info for the container
+
 $ docker run IMAGE # create and run container from image, pulls image from DockerHub registry if not on machine
 $ docker run --name NAME IMAGE  # runs container with a specified name
 $ docker stop CONTAINER_NAME  # stops particular container
 $ docker rm CONTAINER_NAME # delete container from machine
 
 $ docker run IMAGE <COMMANDS_FOR_IMAGE> # runs commands for container created from image upon starting container (e.g., docker run ubuntu sleep 100 -> runs Ubuntu container with command "sleep 100")
-$ docker run -d IMAGE # runs container in background
+$ docker run -d IMAGE # runs container in background (detached mode)
+$ docker run -it IMAGE # runs container with an interactive terminal where you can input your arguments to the commands of your container
+$ docker run -p DOCKER_HOST_PORT:CONTAINER_PORT IMAGE  # port mapping: maps Docker Host port to Container port so that a user can access the container through a network (such as a Node container on a web server port 3001, but user has to connect to Docker Host via DOCKER_HOST_IP:DOCKER_HOST_PORT)
+$ docker run -v DOCKER_HOST_VOLUME_PATH:CONTAINER_VOLUME_PATH IMAGE # persistent volume mapping: maps Docker Host volume path to Container volume path so that even if container is destroyed, the data such as the config or other files will persist in the Docker Host, and a new container can map their volume to the host volume so that the data will persist in the new container
+![Screenshot 2024-09-18 at 6 54 32 PM](https://github.com/user-attachments/assets/180e7926-34fe-4feb-81f1-fae05225703d)
+
+$ docker logs CONTAINER_NAME/CONTAINER_ID  # shows the logs or the output of the running container
 
 $ docker execute CONTAINER_NAME <COMMANDS_FOR_IMAGE>   # executes commands for running container (e.g., docker execute ubuntu_container_name cat file.txt)
 
