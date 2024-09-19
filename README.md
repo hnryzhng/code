@@ -635,12 +635,31 @@ $ docker execute CONTAINER_NAME <COMMANDS_FOR_IMAGE>   # executes commands for r
 ```
 
 ### Build a Docker image
-Building a Dockerfile to containerize the application or build a Docker image
-![Screenshot 2024-09-19 at 3 02 26 PM](https://github.com/user-attachments/assets/0e637a7b-0361-4e0a-a365-7fe70159bc53)
-![Screenshot 2024-09-19 at 3 02 33 PM](https://github.com/user-attachments/assets/ce99d6e8-c04d-462a-941b-c64dacaaccd6)
+1. Build a Dockerfile
 
+```
+# Sample Dockerfile for running a Flask web app
+FROM Ubuntu  # install a base OS image
 
-- General steps to construct a Dockerfile
+RUN apt-get udpate && apt-get -y install python  # install dependencies for OS
+
+RUN pip install flask  # install app dependencies
+
+COPY . /opt/project-repo  # copy source code in project repo to the image 
+
+ENTRYPOINT FLASK_APP=/opt/project-repo/app.py flask run  # Run web server using "flask" command
+```
+
+2. Build the image (containerize the app) from the Dockerfile
+```
+
+$ docker build . -f Dockerfile -t hnryzhng/my-app  # your username and image name
+
+$ docker push hnryzhng/my-app  # pushes to Docker registry, may need to authenticate using $ docker login
+
+```
+
+Additional: General steps to construct a Dockerfile
   - Go through the commands in the shell to install dependencies and run the application
   - Then get and modify the relevant commands to put in the Dockerfile for building the image.
   - Build the image by containerizing the project repo with the Dockerfile.
