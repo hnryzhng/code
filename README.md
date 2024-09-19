@@ -605,7 +605,9 @@ Refer to Google doc "data-engineering-notes"
 # Images
 $ docker images   # lists images on machine
 $ docker pull IMAGE  # pulls Docker image from DockerHub registry, latest version of image if unspecified (e.g., node, ubuntu)
-$ docker rmi IMAGE $ delete images and dependencies on machine
+$ docker rmi IMAGE # delete images and dependencies on machine
+$ docker push USER/IMAGE  # pushes image within user account to Docker registry
+$ docker login  # logs in to user account so can push to corresponding user repo in Docker registry
 
 # Containers
 $ docker ps # lists running containers
@@ -629,9 +631,11 @@ $ docker logs CONTAINER_NAME/CONTAINER_ID  # shows the logs or the output of the
 $ docker execute CONTAINER_NAME <COMMANDS_FOR_IMAGE>   # executes commands for running container (e.g., docker execute ubuntu_container_name cat file.txt)
 
 
+
 ```
 
 ### Build a Docker image
+Building a Dockerfile to containerize the application or build a Docker image
 ![Screenshot 2024-09-19 at 3 02 26 PM](https://github.com/user-attachments/assets/0e637a7b-0361-4e0a-a365-7fe70159bc53)
 ![Screenshot 2024-09-19 at 3 02 33 PM](https://github.com/user-attachments/assets/ce99d6e8-c04d-462a-941b-c64dacaaccd6)
 
@@ -640,4 +644,21 @@ $ docker execute CONTAINER_NAME <COMMANDS_FOR_IMAGE>   # executes commands for r
   - Go through the commands in the shell to install dependencies and run the application
   - Then get and modify the relevant commands to put in the Dockerfile for building the image.
   - Build the image by containerizing the project repo with the Dockerfile.
+ 
+- Dockerfile snippets
+```
+FROM Ubuntu
+CMD sleep 5
+# equal to $ docker run ubuntu sleep 5
+
+FROM Ubuntu
+ENTRYPOINT ["sleep"]
+# equal to docker run ubuntu sleep, but no argument to command
+
+FROM Ubuntu
+ENTRYPOINT ["sleep"]
+CMD ["5"]
+# equal to $ docker run ubuntu sleep 5, PREFERRED CONSTRUCTION
+
+```
 
