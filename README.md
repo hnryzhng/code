@@ -18,6 +18,9 @@ Linux shell scripts
 Apache Airflow
 - [Airflow DAG example](#airflow-dag-example)
 
+Apache Kafka
+- [Apache Kafka setup](#apache-kafka-setup)
+
 Docker
 - [Docker commands cheatsheet](#docker-commands-cheatsheet)
 
@@ -585,6 +588,11 @@ execute_extract >> execute_transform >> execute_load >> execute_check
 
 
 ```
+
+## Apache Kafka
+### Apache Kafka setup
+Refer to Google doc "data-engineering-notes"
+
 
 ## Docker
 ### Docker commands cheatsheet
