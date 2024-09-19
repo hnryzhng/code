@@ -629,3 +629,8 @@ $ docker execute CONTAINER_NAME <COMMANDS_FOR_IMAGE>   # executes commands for r
 
 
 ```
+
+### Build a Docker image
+![Screenshot 2024-09-19 at 3 02 26 PM](https://github.com/user-attachments/assets/0e637a7b-0361-4e0a-a365-7fe70159bc53)
+![oDcTS](https://github.com/user-attachments/assets/c2c64f8c-df28-4f8f-b8e1-4b0e99a3f70a)
+
