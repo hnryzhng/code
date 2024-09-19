@@ -664,7 +664,7 @@ Additional: General steps to construct a Dockerfile
   - Then get and modify the relevant commands to put in the Dockerfile for building the image.
   - Build the image by containerizing the project repo with the Dockerfile.
  
-- Dockerfile snippets
+Dockerfile snippets
 ```
 FROM Ubuntu
 CMD sleep 5
