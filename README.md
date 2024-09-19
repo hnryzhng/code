@@ -23,6 +23,7 @@ Apache Kafka
 
 Docker
 - [Docker commands cheatsheet](#docker-commands-cheatsheet)
+- [Build a Docker Image](#build-a-docker-image)
 
 ## Python
 ### Create a pipenv 
