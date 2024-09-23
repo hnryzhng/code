@@ -635,7 +635,7 @@ $ docker execute CONTAINER_NAME <COMMANDS_FOR_IMAGE>   # executes commands for r
 ```
 
 ### Build a Docker image
-1. Build a Dockerfile
+1. Define a Dockerfile
 
 ```
 # Sample Dockerfile for running a Flask web app
