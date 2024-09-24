@@ -15,15 +15,23 @@ Linux shell scripts
 - [Bash scripts for ETL](#bash-scripts-for-etl)
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
 
+
+
+Docker
+- [Docker commands cheatsheet](#docker-commands-cheatsheet)
+- [Build a Docker Image](#build-a-docker-image)
+
 Apache Airflow
 - [Airflow DAG example](#airflow-dag-example)
 
 Apache Kafka
 - [Apache Kafka setup](#apache-kafka-setup)
 
-Docker
-- [Docker commands cheatsheet](#docker-commands-cheatsheet)
-- [Build a Docker Image](#build-a-docker-image)
+Apache Hadoop
+- Refer to Google doc "data-engineering-notes"
+
+Apache Spark
+- Refer to Google doc "data-engineering-notes"
 
 ## Python
 ### Create a pipenv 
