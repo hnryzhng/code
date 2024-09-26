@@ -9,7 +9,7 @@ Python
 AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
 - Problem: [AWS API Gateway CORS issue](#aws-api-gateway-cors-issue)
-- Problem: [Unable to import module into Lambda function](unable-to-import-module-into-lambda-function)
+- Problem: [Unable to import module into Lambda function](#unable-to-import-module-into-lambda-function)
 
 Linux shell scripts
 - [Linux commands cheatsheet](#linux-commands-cheatsheet)
