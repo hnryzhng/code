@@ -8,7 +8,8 @@ Python
 
 AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
-- [AWS API Gateway CORS issue](#aws-api-gateway-cors-issue)
+- Problem: [AWS API Gateway CORS issue](#aws-api-gateway-cors-issue)
+- Problem: [Unable to import module into Lambda function](unable-to-import-module-into-lambda-function)
 
 Linux shell scripts
 - [Linux commands cheatsheet](#linux-commands-cheatsheet)
@@ -121,6 +122,28 @@ Client → API Gateway → Preflight request (OPTIONS method) → Server → Pre
 
 4. Within the response in your API service source code, include the attribute ‘Access-Control-Allow-Origin’ = ‘*’.
 ![Screenshot 2024-09-26 at 11 10 36 AM](https://github.com/user-attachments/assets/ce6e42e6-c699-4bef-9dfe-7699e5e90ad3)
+
+### Unable to import module into Lambda function
+Problem: Incompatible dependencies for AWS Lambda runtime environment
+
+"errorMessage": "Unable to import module 'lambda_function': No module named 'pydantic_core._pydantic_core'"
+could be due to different runtime between local machine runtime architecture (arm) and lambda function runtime architecture (x86)
+
+Solution 1: https://stackoverflow.com/questions/76650856/no-module-named-pydantic-core-pydantic-core-in-aws-lambda-though-library-is-i
+
+adapted approach from Alena to pip install dependencies for proper x86 architecture runtime 
+
+- clear pip cache so that previously incorrectly versioned dependencies are not reinstalled
+- add the pip install line, can add to init.sh script
+
+```
+VIRTUALENV_DEPENDENCIES_PATH=./virtualenv/lib/python3.12/site-packages
+pip install -r requirements.txt --platform manylinux2014_x86_64 --target $VIRTUALENV_DEPENDENCIES_PATH --only-binary=:all:
+```
+
+- build the lambda package to deploy → build.sh script
+- upload lambda.zip to AWS Lambda console, hope it works…
+- if not, try adding the Lambda layer from the StackOverflow answer by user659xxxx
 
    
 
