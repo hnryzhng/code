@@ -105,25 +105,23 @@ AWS CORS issue doc: https://docs.aws.amazon.com/apigateway/latest/developerguide
 
 Client → API Gateway → Preflight request (OPTIONS method) → Server → Preflight response (with 3 Access-Control-Headers) → API Gateway → Actual request (GET/POST/etc method) → Server → actual response to API Gateway → actual response to Client
 
-![Screenshot 2024-09-26 at 10.53.18 AM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/674bc559-f775-4dd0-aa0a-8be1f19f2a30/a3abed59-2ea5-4c0a-9bf6-bcfa6689f030/Screenshot_2024-09-26_at_10.53.18_AM.png)
 
-1. An OPTIONS method must be created for every resource level (every endpoint)
+1. An OPTIONS method must be created for every resource level (every endpoint). OPTIONS should be of Integration Type ‘Mock’.
+![Screenshot 2024-09-26 at 11 05 30 AM](https://github.com/user-attachments/assets/401083b1-fd68-4219-b90d-f24990a8f288)
+
 2. For each OPTIONS method, under Method Response, add the three request headers Access-Control-Allow-Origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods (no quotations).  If unable to edit existing response, may have to delete then create new response.
-    
-    ![Screenshot 2024-09-26 at 10.57.02 AM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/674bc559-f775-4dd0-aa0a-8be1f19f2a30/330dedd1-1e9c-4607-8703-3825ba415b9c/Screenshot_2024-09-26_at_10.57.02_AM.png)
+![Screenshot 2024-09-26 at 11 05 47 AM](https://github.com/user-attachments/assets/7281c5ac-afbc-4c25-8b02-e9f3460bfc3c)
     
 3. For OPTIONS method, under Integration Response, for Response 200, set Content Handling to ‘Passthrough’. Then assign the string values with *quotations* to each Access-Control request header. If unable to edit existing response, may have to delete then create new response.
     1. Access-Control-Allow-Origin = ‘*’
     2. Access-Control-Allow-Headers = 'Content-Type,Authorization’
     3. Access-Control-Allow-Methods = 'GET,POST,PUT,DELETE,OPTIONS’
+![Screenshot 2024-09-26 at 11 05 57 AM](https://github.com/user-attachments/assets/7386eeb5-b863-44f4-87bc-8dd027cbc492)
 
-![Screenshot 2024-09-26 at 10.59.24 AM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/674bc559-f775-4dd0-aa0a-8be1f19f2a30/8f815e77-b7b9-4c3f-94ba-f736ecd07364/Screenshot_2024-09-26_at_10.59.24_AM.png)
+4. Within the response in your API service source code, include the attribute ‘Access-Control-Allow-Origin’ = ‘*’.
+![Screenshot 2024-09-26 at 11 10 36 AM](https://github.com/user-attachments/assets/ce6e42e6-c699-4bef-9dfe-7699e5e90ad3)
 
-4. Within the response in your API service source code, include the attribute ‘Access-Control-Allow-Origin’ = ‘*’. 
-    
-    ![Screenshot 2024-09-26 at 11.02.12 AM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/674bc559-f775-4dd0-aa0a-8be1f19f2a30/b7680604-89be-4af3-9942-03cf05b5d8c0/Screenshot_2024-09-26_at_11.02.12_AM.png)
-
-
+   
 
 ## Linux commands cheatsheet
 
