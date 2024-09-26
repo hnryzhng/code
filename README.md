@@ -105,6 +105,7 @@ AWS CORS issue doc: https://docs.aws.amazon.com/apigateway/latest/developerguide
 
 Client → API Gateway → Preflight request (OPTIONS method) → Server → Preflight response (with 3 Access-Control-Headers) → API Gateway → Actual request (GET/POST/etc method) → Server → actual response to API Gateway → actual response to Client
 
+**Approach (non-proxy integration)**
 
 1. An OPTIONS method must be created for every resource level (every endpoint). OPTIONS should be of Integration Type ‘Mock’.
 ![Screenshot 2024-09-26 at 11 05 30 AM](https://github.com/user-attachments/assets/401083b1-fd68-4219-b90d-f24990a8f288)
