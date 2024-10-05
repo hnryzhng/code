@@ -16,7 +16,7 @@ Linux shell scripts
 - [Shell scripting](#shell-scripting)
 - [Bash scripts for ETL](#bash-scripts-for-etl)
 - [Bash scripts for Python project](#bash-scripts-for-python-project)
-
+- [SSH](#ssh)
 
 
 Docker
@@ -519,6 +519,13 @@ python3 "$PYTHON_FILE"
 # Deactivate the virtual environment
 deactivate
 ```
+
+## SSH
+### SSH key generation 
+example: for Github SSH cloning
+$ ssh-keygen -t rsa -b 4096 -C "hnryzhng@gmail.com"
+$ cat /Users/USERNAME/.ssh/id_rsa.pub
+
 
 ## Apache Airflow
 Batch processing platform
