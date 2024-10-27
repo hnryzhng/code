@@ -35,6 +35,10 @@ Apache Hadoop
 Apache Spark
 - Refer to Google doc "data-engineering-notes"
 
+Arduino
+- [Arduino Basics](#arduino-basics)
+
+
 ## Python
 ### Create a pipenv 
 (Python virtual environment)
@@ -744,4 +748,122 @@ CMD ["5"]
 # equal to $ docker run ubuntu sleep 5, PREFERRED CONSTRUCTION
 
 ```
+
+## Arduino
+### Arduino Basics
+
+**Tools**
+- Arduino IDE
+- TinkerCad - simulator
+- Arduino physical set (microcontroller board, USB cable, breadboard, sensors, etc.)
+- Resistor Color Code (Digikey)
+
+**Workflow**
+Build circuit in simulator and write code in simulator or IDE -> test -> if it works, then build it using physical Arduino board and circuits
+Programming
+
+**Setup**
+```
+void setup() {
+	// initialize code
+}
+
+
+void loop() {
+	// main code here that runs repeatedly in loop
+ Serial.println("loop iteration");
+}
+```
+
+**Debugging**
+```
+void setup() {
+ // debugging: logging to serial monitor
+ 
+ // initialize serial communication (baud rate here should match that of serial monitor)
+ Serial.begin(9600);
+ Serial.println("Hi");
+}
+void loop() {
+ Serial.println("loop iteration");
+}
+```
+
+**Program: Basic LED blinking**
+```
+void setup() {
+ // put your setup code here, to run once:
+ // Set LED pin 13 to output
+ pinMode(13, OUTPUT);
+
+
+}
+
+
+void loop() {
+ // Main code to run on loop
+ blink();
+}
+
+
+void blink() {
+ digitalWrite(13, HIGH);	// turn on
+ delay(1000);  // Wait for 1000 millisecond(s)
+ digitalWrite(13, LOW);	// turn off
+ delay(1000);
+}
+```
+
+**Programming basics**
+Reference: https://drive.google.com/file/d/1Nh-YW7C1sSA8IkyHgRe54GGsAuEr-kWD/view?usp=drive_link 
+
+```
+#define LED_PIN 12  // define constant
+
+
+int a = 1;  // initialize and define variable
+int b;  // initialize variable
+int temperatureArray[2] = {23, 45}; // static array
+
+
+// primitive data types: bool, String, int, double (float), long
+// int: max 2 bytes, range -32,768 to 32,767, else overflow
+// long: max 4 bytes, range -2,147,483,648 to 2,147,483,647, else overflow
+// double (float): practically unlimited
+
+
+void setup() {
+  Serial.begin(9600);
+
+
+ int temp = 0;
+
+
+ if ((temp >= 0) && (temp <= 30)) {
+   Serial.println("low temp");
+ }
+ else if (temp >= 30) {
+   Serial.println("high temp");
+ }
+ else {
+   Serial.println("temp is outside range");
+ }
+
+
+ for (int i = 0; i < 10; i++) {
+   Serial.println("Hi";
+ }
+
+
+}
+
+
+void loop() {
+
+
+}
+
+```
+
+
 
