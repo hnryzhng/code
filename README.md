@@ -752,16 +752,17 @@ CMD ["5"]
 ## Arduino
 ### Arduino Basics
 
-**Tools**
+#### Tools
 - Arduino IDE
 - TinkerCad - simulator
 - Arduino physical set (microcontroller board, USB cable, breadboard, sensors, etc.)
 - Resistor Color Code (Digikey)
 
-**Workflow**
+#### Workflow
 - Build circuit in simulator and write code in simulator or IDE -> test -> if it works, then build it using physical Arduino board and circuits
 Programming
 
+#### Code illustrations
 **Setup**
 ```
 void setup() {
@@ -798,7 +799,6 @@ void setup() {
 
 
 }
-
 
 void loop() {
  // Main code to run on loop
