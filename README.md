@@ -814,7 +814,7 @@ void blink() {
 ```
 
 **Programming basics**
-Reference: https://drive.google.com/file/d/1Nh-YW7C1sSA8IkyHgRe54GGsAuEr-kWD/view?usp=drive_link 
+- Reference: https://drive.google.com/file/d/1Nh-YW7C1sSA8IkyHgRe54GGsAuEr-kWD/view?usp=drive_link 
 
 ```
 #define LED_PIN 12  // define constant
