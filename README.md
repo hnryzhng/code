@@ -759,7 +759,7 @@ CMD ["5"]
 - Resistor Color Code (Digikey)
 
 **Workflow**
-Build circuit in simulator and write code in simulator or IDE -> test -> if it works, then build it using physical Arduino board and circuits
+- Build circuit in simulator and write code in simulator or IDE -> test -> if it works, then build it using physical Arduino board and circuits
 Programming
 
 **Setup**
