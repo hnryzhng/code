@@ -160,12 +160,12 @@ Error in AWS Lambda function: Unable to import module 'psycopg2'
 Trouble import psycopg2 module in Python Lambda function due to inconsistent dependencies built on local machine compared with AWS Lambda runtime architecture
 
 Instructions:
-0. Create AWS Lambda with the correct Python version runtime (e.g., Python 3.11 and other versions)
-1. Download corresponding psycopg library for AWS given Python version (I used Python 3.11) from GitHub repo awslambda-psycopg2 (https://github.com/jkehler/awslambda-psycopg2)
-2. Find corresponding psycopg2-PYTHONVERSION (e.g., psycopg2-3.11) folder and rename entire folder to “psycopg2”.
-3. Initialize virtualenv and install dependencies ($bash [init.sh](http://init.sh) - make sure correct Python version; e.g., may have to change first instruction in Bash script from python -m venv virtualenv to python3.11 -m venv virtual)
-4. Move the psycopg2 folder and its contents to the Lambda function’s virtualenv/lib/python-VERSION/site-packages/ (e.g., virtualenv/lib/python-3.11/site-packages/)
-5. Created zipped deployment package ($bash build.sh)
+1. Create AWS Lambda with the correct Python version runtime (e.g., Python 3.11 and other versions)
+2. Download corresponding psycopg library for AWS given Python version (I used Python 3.11) from GitHub repo awslambda-psycopg2 (https://github.com/jkehler/awslambda-psycopg2)
+3. Find corresponding psycopg2-PYTHONVERSION (e.g., psycopg2-3.11) folder in downloaded libraries and rename entire folder to “psycopg2”.
+4. Initialize virtualenv and install dependencies ($bash init.sh - make sure correct Python version; e.g., may have to change first instruction in Bash script from python -m venv virtualenv to python3.11 -m venv virtual)
+5. Move the psycopg2 folder and its contents to the Lambda function’s virtualenv/lib/python-VERSION/site-packages/ (e.g., virtualenv/lib/python-3.11/site-packages/)
+6. Created zipped deployment package ($bash build.sh)
 
 
 
