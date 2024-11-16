@@ -464,21 +464,26 @@ $ bash BASH_SCRIPT_FILE_NAME
 
 a. Initialize Python project: $ bash init.sh
  ```
- #!/bin/bash
+#!/bin/bash
 
 # init.sh
 
 # Create a virtual environment
 python3 -m venv virtualenv
+echo "created virtual environment"
 
 # Activate the virtual environment
 source virtualenv/bin/activate
+echo "activated virtual env"
 
 # Install dependencies
 pip3 install -r requirements.txt
+echo "installed dependencies from requirements.txt"
 
 # Create deployment directory for Python files and installed dependencies site-packages
 mkdir deployment_package/
+echo "created deployment package directory"
+
  ```
 
 b. Build Python Lambda function: $ bash build.sh 
