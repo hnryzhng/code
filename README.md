@@ -107,9 +107,9 @@ $ cd ..
 5. Upload ZIP file using AWS console in Lambda dashboard
 
 ### NAT Gateway
-Since NAT Gateways are expensive, add it only shortly before launch, if at all
+Since NAT Gateways are expensive, add it only shortly before prod launch, if at all
 
-Used for lambda functions in private subnets to access the internet: Lambda function in private subnet → private route table → NAT Gateway → auto points to Internet Gateway
+Use case: For resources such as Lambda functions in private subnets to access the Internet: Lambda function in private subnet → private route table → NAT Gateway → auto points to Internet Gateway
 
 Have private route table with ingress relevant private subnet point to NAT Gateway
 
