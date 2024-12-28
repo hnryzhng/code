@@ -146,7 +146,17 @@ adapted approach from Alena to pip install dependencies for proper x86 architect
 
 ```
 VIRTUALENV_DEPENDENCIES_PATH=./virtualenv/lib/python3.12/site-packages
+# arm64 (e.g., Macbook M1)
+pip install -r requirements.txt --platform manylinux2014_aarch64 --target $VIRTUALENV_DEPENDENCIES_PATH --only-binary=:all:	
+# x86 (e.g., Macbook Intel)
 pip install -r requirements.txt --platform manylinux2014_x86_64 --target $VIRTUALENV_DEPENDENCIES_PATH --only-binary=:all:
+```
+- alternative: after installing all dependencies, delete the pydantic libraries and install the pydantic wheel by executing the following command:
+```
+# arm64
+pip install pydantic --platform manylinux2014_aarch64 -t .
+$ x86
+pip install pydantic --platform manylinux2014_x86_64 -t .
 ```
 
 - build the lambda package to deploy → build.sh script
