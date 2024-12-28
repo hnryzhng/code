@@ -8,6 +8,7 @@ Python
 
 AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
+- [NAT Gateway](#nat-gateway)
 - Problem: [AWS API Gateway CORS issue](#aws-api-gateway-cors-issue)
 - Problem: [Unable to import module into Lambda function](#unable-to-import-module-into-lambda-function)
 - Problem: [Unable to import psycopg2 connecting Python Lambda to Postgresql database](#unable-to-import-psycopg2-connecting-python-lambda-to-postgresql-database)
@@ -104,6 +105,14 @@ $ cd ..
 ```
 
 5. Upload ZIP file using AWS console in Lambda dashboard
+
+### NAT Gateway
+Since NAT Gateways are expensive, add it only shortly before launch, if at all
+
+Used for lambda functions in private subnets to access the internet: Lambda function in private subnet → private route table → NAT Gateway → auto points to Internet Gateway
+
+Have private route table with ingress relevant private subnet point to NAT Gateway
+
 
 ### AWS API Gateway CORS issue
 
