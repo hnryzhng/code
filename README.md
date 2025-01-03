@@ -40,6 +40,9 @@ Apache Spark
 Arduino
 - [Arduino Basics](#arduino-basics)
 
+React
+- Problem: [HTTP polyfill error](#http-polyfill-error)
+
 
 ## Python
 ### Create a pipenv 
@@ -902,6 +905,20 @@ void loop() {
 }
 
 ```
+
+## React
+
+### HTTP Polyfill error
+If getting this after 'npm start', add the following snippet in the file 'webpack.config.js' within the 'resolve' attribute. Then run 'npm start' again.
+```
+resolve: {
+	...
+	fallback: {
+		"http": false
+	}
+}
+```
+
 
 
 
