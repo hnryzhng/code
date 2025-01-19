@@ -909,7 +909,7 @@ void loop() {
 ## React
 
 ### HTTP Polyfill error
-If getting this after 'npm start', add the following snippet in the file 'webpack.config.js' within the 'resolve' attribute. Then run 'npm start' again.
+If getting this after 'npm start', add the following snippet in the file 'webpack.config.js' (path: node-modules/react-scripts/config/webpack.config.js) within the 'resolve' attribute. Then run 'npm start' again.
 ```
 resolve: {
 	...
