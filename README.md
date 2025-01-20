@@ -122,26 +122,23 @@ Have private route table with ingress relevant private subnet point to NAT Gatew
 Without CloudFront (CDN), so no HTTPS
 GoDaddy -> AWS Route53 -> S3 bucket (deployed React app)
 
-1. Set Up Your React Frontend in S3
+#### 1. Set Up Your React Frontend in S3
 Ensure your React application is deployed to an S3 bucket:
 
-Create an S3 Bucket:
+##### Create an S3 Bucket:
 
-The bucket name should match your domain name (e.g., mydomain.com) if possible, to make DNS integration straightforward.
-Enable static website hosting for the bucket under the Properties tab.
-Set the Index document to index.html and optionally the Error document to index.html.
-Upload Your Build Files:
+	- The bucket name should match your domain name (e.g., mydomain.com) if possible, to make DNS integration straightforward.
+	- Enable static website hosting for the bucket under the Properties tab.
+	- Set the Index document to index.html and optionally the Error document to index.html.
+#### 2. Upload Your Build Files:
 
-Run npm run build or yarn build in your React project.
-Upload the contents of the build/ directory to your S3 bucket.
-Set Permissions:
-
+- Run npm run build or yarn build in your React project.
+- Upload the contents of the build/ directory to your S3 bucket.
+- Set Permissions:
 Go to the Permissions tab of your S3 bucket and ensure the files are publicly accessible:
 Attach a Bucket Policy like this:
 
-json
-Copy
-Edit
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -154,6 +151,7 @@ Edit
         }
     ]
 }
+```
 Replace mydomain.com with your bucket name.
 
 Obtain the S3 Website Endpoint:
