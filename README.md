@@ -125,18 +125,19 @@ GoDaddy -> AWS Route53 -> S3 bucket (deployed React app)
 #### 1. Set Up Your React Frontend in S3
 Ensure your React application is deployed to an S3 bucket:
 
-##### Create an S3 Bucket:
+##### 1a. Create an S3 Bucket:
 
 	- The bucket name should match your domain name (e.g., mydomain.com) if possible, to make DNS integration straightforward.
 	- Enable static website hosting for the bucket under the Properties tab.
 	- Set the Index document to index.html and optionally the Error document to index.html.
-#### 2. Upload Your Build Files:
+##### 1b. Upload Your Build Files:
+	
+	- Run npm run build or yarn build in your React project.
+	- Upload the contents of the build/ directory to your S3 bucket.
 
-- Run npm run build or yarn build in your React project.
-- Upload the contents of the build/ directory to your S3 bucket.
-- Set Permissions:
-Go to the Permissions tab of your S3 bucket and ensure the files are publicly accessible:
-Attach a Bucket Policy like this:
+##### 1c. Set Permissions:
+	- Go to the Permissions tab of your S3 bucket and ensure the files are publicly accessible:
+	Attach a Bucket Policy like this:
 
 ```
 {
@@ -154,67 +155,74 @@ Attach a Bucket Policy like this:
 ```
 Replace mydomain.com with your bucket name.
 
-Obtain the S3 Website Endpoint:
+##### 1d. Obtain the S3 Website Endpoint:
 
-Go to the Properties tab, find the Static website hosting section, and copy the Bucket website endpoint (e.g., http://mydomain.com.s3-website-us-east-1.amazonaws.com).
-2. Set Up Route 53 as Your DNS Manager
+	- Go to the Properties tab, find the Static website hosting section, and copy the Bucket website endpoint (e.g., http://mydomain.com.s3-website-us-east-1.amazonaws.com).
+
+#### 2. Set Up Route 53 as Your DNS Manager
 Route 53 will handle DNS management for your domain.
 
-Create a Hosted Zone:
+##### 2a. Create a Hosted Zone:
 
-Go to the Route 53 Console in AWS.
-Click Create Hosted Zone.
-Enter your domain name (e.g., mydomain.com).
-Choose Public Hosted Zone and click Create.
-Note the Route 53 Nameservers:
+	- Go to the Route 53 Console in AWS.
+	- Click Create Hosted Zone.
+	- Enter your domain name (e.g., mydomain.com).
+	- Choose Public Hosted Zone and click Create.
+
+##### 2b. Note the Route 53 Nameservers:
 
 After creating the hosted zone, AWS provides a list of nameservers (NS records). These will be used to configure GoDaddy.
-3. Update GoDaddy Nameservers to Point to Route 53
-Login to GoDaddy:
 
-Go to your GoDaddy account, select your domain, and go to the DNS Management section.
-Change Nameservers:
+#### 3. Update GoDaddy Nameservers to Point to Route 53
 
-Find the section for Nameservers.
-Choose Custom Nameservers and add the 4 nameservers provided by Route 53.
-Save the changes.
-Note: DNS changes can take up to 48 hours to propagate, but they often update much sooner.
+##### 3a. Login to GoDaddy:
+	- Go to your GoDaddy account, select your domain, and go to the DNS Management section.
+##### 3b. Change Nameservers:
 
-4. Configure DNS Records in Route 53
+	- Find the section for Nameservers.
+	- Choose Custom Nameservers and add the 4 nameservers provided by Route 53.
+	- Save the changes.
+	- Note: DNS changes can take up to 48 hours to propagate, but they often update much sooner.
+
+#### 4. Configure DNS Records in Route 53
 In Route 53, set up DNS records to point your domain to the S3 bucket.
 
-Add an A Record for the Root Domain (mydomain.com):
+##### 4a. Add an A Record for the Root Domain (mydomain.com):
 
-Go to the Hosted Zone you created.
-Click Create Record.
-Set the following values:
-Record Name: Leave blank to use the root domain (mydomain.com).
-Record Type: A (Address).
-Alias: Yes.
-Alias Target: Choose the S3 website endpoint from the list.
-Add a CNAME Record for the Subdomain (www.mydomain.com):
+	- Go to the Hosted Zone you created.
+	- Click Create Record.
+	- Set the following values:
+		Record Name: Leave blank to use the root domain (mydomain.com).
+		Record Type: A (Address).
+		Alias: Yes.
+		Alias Target: Choose the S3 website endpoint from the list.
+  
+##### 4b. Add a CNAME Record for the Subdomain (www.mydomain.com):
 
-Click Create Record again.
-Set the following values:
-Record Name: www.
-Record Type: CNAME.
-Value: Enter the S3 website endpoint (e.g., mydomain.com.s3-website-us-east-1.amazonaws.com).
-5. Test the Integration
-Open a browser and navigate to:
-http://mydomain.com
-http://www.mydomain.com
-Ensure the React application is loading properly.
-6. (Optional) Redirect www to Root Domain
+	- Click Create Record again.
+	- Set the following values:
+		Record Name: www.
+		Record Type: CNAME.
+		Value: Enter the S3 website endpoint (e.g., mydomain.com.s3-website-us-east-1.amazonaws.com).
+
+#### 5. Test the Integration
+##### 5a. Open a browser and navigate to:
+	http://mydomain.com
+	http://www.mydomain.com
+##### 5b. Ensure the React application is loading properly.
+
+#### 6. (Optional) Redirect www to Root Domain
 If you want all traffic to www.mydomain.com to redirect to mydomain.com (or vice versa), configure the S3 bucket for redirection:
 
-Create a Second S3 Bucket:
+##### 6a. Create a Second S3 Bucket:
 
-Name the bucket www.mydomain.com.
-In the Properties tab, enable Static website hosting.
-Select the Redirect requests for an object option and set the target bucket to mydomain.com.
-Update DNS in Route 53:
+	- Name the bucket www.mydomain.com.
+	- In the Properties tab, enable Static website hosting.
+	- Select the Redirect requests for an object option and set the target bucket to mydomain.com.
 
-In the CNAME record for www, change the value to the new bucket’s endpoint (www.mydomain.com.s3-website-region.amazonaws.com).
+##### 6b. Update DNS in Route 53:
+
+	- In the CNAME record for www, change the value to the new bucket’s endpoint (www.mydomain.com.s3-website-region.amazonaws.com).
 
 
 
