@@ -119,8 +119,10 @@ Have private route table with ingress relevant private subnet point to NAT Gatew
 
 
 ### Domain integration: GoDaddy to AWS S3
-Without CloudFront (CDN), so no HTTPS
 GoDaddy -> AWS Route53 -> S3 bucket (deployed React app)
+Without CloudFront (CDN), so no HTTPS
+GPT guide: https://chatgpt.com/c/66db4379-1894-800f-a105-2c5c7ce5bcd0
+
 
 #### 1. Set Up Your React Frontend in S3
 Ensure your React application is deployed to an S3 bucket:
@@ -209,6 +211,7 @@ In Route 53, set up DNS records to point your domain to the S3 bucket.
 ##### 5a. Open a browser and navigate to:
 	http://mydomain.com
 	http://www.mydomain.com
+ 
 ##### 5b. Ensure the React application is loading properly.
 
 #### 6. (Optional) Redirect www to Root Domain
