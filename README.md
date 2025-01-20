@@ -118,7 +118,7 @@ Use case: For resources such as Lambda functions in private subnets to access th
 Have private route table with ingress relevant private subnet point to NAT Gateway
 
 
-### Domain integration GoDaddy to AWS S3
+### Domain integration: GoDaddy to AWS S3
 Without CloudFront (CDN), so no HTTPS
 GoDaddy -> AWS Route53 -> S3 bucket (deployed React app)
 
