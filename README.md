@@ -9,6 +9,7 @@ Python
 AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
 - [NAT Gateway](#nat-gateway)
+- [Domain integration GoDaddy to AWS S3](#domain-integration-godaddy-to-aws-s3)
 - Problem: [AWS API Gateway CORS issue](#aws-api-gateway-cors-issue)
 - Problem: [Unable to import module into Lambda function](#unable-to-import-module-into-lambda-function)
 - Problem: [Unable to import psycopg2 connecting Python Lambda to Postgresql database](#unable-to-import-psycopg2-connecting-python-lambda-to-postgresql-database)
@@ -115,6 +116,108 @@ Since NAT Gateways are expensive, add it only shortly before prod launch, if at 
 Use case: For resources such as Lambda functions in private subnets to access the Internet: Lambda function in private subnet → private route table → NAT Gateway → auto points to Internet Gateway
 
 Have private route table with ingress relevant private subnet point to NAT Gateway
+
+
+### Domain integration GoDaddy to AWS S3
+Without CloudFront (CDN), so no HTTPS
+GoDaddy -> AWS Route53 -> S3 bucket (deployed React app)
+
+1. Set Up Your React Frontend in S3
+Ensure your React application is deployed to an S3 bucket:
+
+Create an S3 Bucket:
+
+The bucket name should match your domain name (e.g., mydomain.com) if possible, to make DNS integration straightforward.
+Enable static website hosting for the bucket under the Properties tab.
+Set the Index document to index.html and optionally the Error document to index.html.
+Upload Your Build Files:
+
+Run npm run build or yarn build in your React project.
+Upload the contents of the build/ directory to your S3 bucket.
+Set Permissions:
+
+Go to the Permissions tab of your S3 bucket and ensure the files are publicly accessible:
+Attach a Bucket Policy like this:
+
+json
+Copy
+Edit
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::mydomain.com/*"
+        }
+    ]
+}
+Replace mydomain.com with your bucket name.
+
+Obtain the S3 Website Endpoint:
+
+Go to the Properties tab, find the Static website hosting section, and copy the Bucket website endpoint (e.g., http://mydomain.com.s3-website-us-east-1.amazonaws.com).
+2. Set Up Route 53 as Your DNS Manager
+Route 53 will handle DNS management for your domain.
+
+Create a Hosted Zone:
+
+Go to the Route 53 Console in AWS.
+Click Create Hosted Zone.
+Enter your domain name (e.g., mydomain.com).
+Choose Public Hosted Zone and click Create.
+Note the Route 53 Nameservers:
+
+After creating the hosted zone, AWS provides a list of nameservers (NS records). These will be used to configure GoDaddy.
+3. Update GoDaddy Nameservers to Point to Route 53
+Login to GoDaddy:
+
+Go to your GoDaddy account, select your domain, and go to the DNS Management section.
+Change Nameservers:
+
+Find the section for Nameservers.
+Choose Custom Nameservers and add the 4 nameservers provided by Route 53.
+Save the changes.
+Note: DNS changes can take up to 48 hours to propagate, but they often update much sooner.
+
+4. Configure DNS Records in Route 53
+In Route 53, set up DNS records to point your domain to the S3 bucket.
+
+Add an A Record for the Root Domain (mydomain.com):
+
+Go to the Hosted Zone you created.
+Click Create Record.
+Set the following values:
+Record Name: Leave blank to use the root domain (mydomain.com).
+Record Type: A (Address).
+Alias: Yes.
+Alias Target: Choose the S3 website endpoint from the list.
+Add a CNAME Record for the Subdomain (www.mydomain.com):
+
+Click Create Record again.
+Set the following values:
+Record Name: www.
+Record Type: CNAME.
+Value: Enter the S3 website endpoint (e.g., mydomain.com.s3-website-us-east-1.amazonaws.com).
+5. Test the Integration
+Open a browser and navigate to:
+http://mydomain.com
+http://www.mydomain.com
+Ensure the React application is loading properly.
+6. (Optional) Redirect www to Root Domain
+If you want all traffic to www.mydomain.com to redirect to mydomain.com (or vice versa), configure the S3 bucket for redirection:
+
+Create a Second S3 Bucket:
+
+Name the bucket www.mydomain.com.
+In the Properties tab, enable Static website hosting.
+Select the Redirect requests for an object option and set the target bucket to mydomain.com.
+Update DNS in Route 53:
+
+In the CNAME record for www, change the value to the new bucket’s endpoint (www.mydomain.com.s3-website-region.amazonaws.com).
+
 
 
 ### AWS API Gateway CORS issue
