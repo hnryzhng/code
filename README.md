@@ -9,7 +9,7 @@ Python
 AWS
 - [Build and Deploy AWS Lambda function in Python](#build-and-deploy-aws-lambda-function-in-python)
 - [NAT Gateway](#nat-gateway)
-- [Domain integration GoDaddy to AWS S3](#domain-integration-godaddy-to-aws-s3)
+- [Domain integration: GoDaddy to AWS S3](#domain-integration-godaddy-to-aws-s3)
 - Problem: [AWS API Gateway CORS issue](#aws-api-gateway-cors-issue)
 - Problem: [Unable to import module into Lambda function](#unable-to-import-module-into-lambda-function)
 - Problem: [Unable to import psycopg2 connecting Python Lambda to Postgresql database](#unable-to-import-psycopg2-connecting-python-lambda-to-postgresql-database)
