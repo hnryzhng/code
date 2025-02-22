@@ -45,6 +45,7 @@ React
 - Problem: [HTTP polyfill error](#http-polyfill-error)
 
 IPFS
+- [IPFS Resources](#ipfs-resources)
 - [Setup local IPFS node](#setup-local-ipfs-node)
 - [Integrate React app with IPFS](#integrate-react-app-with-ipfs)
 
