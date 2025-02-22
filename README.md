@@ -1061,6 +1061,8 @@ resolve: {
    ```
    ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["http://localhost:3000"]'	# if React is on localhost 3000, or 5173 for Vite
    ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
+   ipfs config --json API.HTTPHeaders.Access-Control-Allow-Headers '["Authorization", "Content-Type"]'
+
    ```
 
 4. Run local IPFS node using daemon. Starts background service, make it accessible on http://localhost:PORTS -> ports 5001 (API), 8080 (Gateway), 4001 (Swarm for peer-to-peer communication)
