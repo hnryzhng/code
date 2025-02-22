@@ -47,6 +47,7 @@ React
 IPFS
 - [IPFS Resources](#ipfs-resources)
 - [Setup local IPFS node](#setup-local-ipfs-node)
+- [Setup IPFS node cluster in the cloud](#setup-ipfs-node-cluster-in-the-cloud)
 - [Integrate React app with IPFS](#integrate-react-app-with-ipfs)
 
 
@@ -1071,6 +1072,10 @@ resolve: {
    ```
    http://127.0.0.1:5001/webui
    ```
+
+### Setup IPFS node cluster in the cloud
+
+https://chatgpt.com/c/67b93b9e-d320-800f-998e-e160b379198b
 
 
 ### Integrate React app with IPFS 
