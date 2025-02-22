@@ -1088,29 +1088,34 @@ https://chatgpt.com/c/67b93b9e-d320-800f-998e-e160b379198b
 
 2. Upload a file to IPFS in the React component via API localhost port (here: http://localhost:5001)
    	```
-	// Sample React component
 	
-	import React, { useState } from 'react';
-	import { create } from 'ipfs-http-client';
-		
-	// Configure the client to point to local IPFS node
-	const client = create({
+ 	// Sample React component (TypeScript)
+	
+	import React, { useState, ChangeEvent, FormEvent } from 'react';
+	import { create, IPFSHTTPClient } from 'ipfs-http-client';
+	
+	// Create an IPFS client instance
+	const client: IPFSHTTPClient = create({
 	  host: 'localhost',
-	  port: '5001',
+	  port: 5001,
 	  protocol: 'http',
 	});
-		
-	const IPFSFileUploader = () => {
-	  const [file, setFile] = useState(null);
-	  const [cid, setCid] = useState('');
-	  const [uploading, setUploading] = useState(false);
-	  const [error, setError] = useState('');
 	
-	  const onFileChange = (event) => {
-	    setFile(event.target.files[0]);
+	const IPFSFileUploader: React.FC = () => {
+	  const [file, setFile] = useState<File | null>(null);
+	  const [cid, setCid] = useState<string>('');
+	  const [uploading, setUploading] = useState<boolean>(false);
+	  const [error, setError] = useState<string>('');
+	
+	  // Handle file selection
+	  const onFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+	    if (event.target.files && event.target.files.length > 0) {
+	      setFile(event.target.files[0]);
+	    }
 	  };
 	
-	  const onFileUpload = async (event) => {
+	  // Upload the file and pin it
+	  const onFileUpload = async (event: FormEvent<HTMLFormElement>) => {
 	    event.preventDefault();
 	    if (!file) {
 	      setError('Please select a file to upload.');
@@ -1119,11 +1124,14 @@ https://chatgpt.com/c/67b93b9e-d320-800f-998e-e160b379198b
 	    setUploading(true);
 	    setError('');
 	    try {
-	      // Upload file to IPFS
+	      // Upload the file to IPFS
 	      const added = await client.add(file);
 	      setCid(added.path);
+	
+	      // Pin the file to ensure it's persisted on your node
+	      await client.pin.add(added.path);
 	    } catch (err) {
-	      console.error('Error uploading file: ', err);
+	      console.error('Error uploading or pinning file:', err);
 	      setError('File upload failed.');
 	    }
 	    setUploading(false);
@@ -1133,24 +1141,28 @@ https://chatgpt.com/c/67b93b9e-d320-800f-998e-e160b379198b
 	    <div>
 	      <h2>Upload File to IPFS</h2>
 	      <form onSubmit={onFileUpload}>
-		<input type="file" onChange={onFileChange} />
-		<button type="submit" disabled={uploading}>
-		  {uploading ? 'Uploading...' : 'Upload'}
-		</button>
+	        <input type="file" onChange={onFileChange} />
+	        <button type="submit" disabled={uploading}>
+	          {uploading ? 'Uploading...' : 'Upload'}
+	        </button>
 	      </form>
 	      {cid && (
-		<div>
-		  <p>File uploaded successfully!</p>
-		  <p>
-		    CID: <code>{cid}</code>
-		  </p>
-		  <p>
-		    View file at:{" "}
-		    <a href={`https://ipfs.io/ipfs/${cid}`} target="_blank" rel="noopener noreferrer">
-		      https://ipfs.io/ipfs/{cid}
-		    </a>
-		  </p>
-		</div>
+	        <div>
+	          <p>File uploaded and pinned successfully!</p>
+	          <p>
+	            CID: <code>{cid}</code>
+	          </p>
+	          <p>
+	            View file at:{' '}
+	            <a
+	              href={`https://ipfs.io/ipfs/${cid}`}
+	              target="_blank"
+	              rel="noopener noreferrer"
+	            >
+	              https://ipfs.io/ipfs/{cid}
+	            </a>
+	          </p>
+	        </div>
 	      )}
 	      {error && <p style={{ color: 'red' }}>{error}</p>}
 	    </div>
@@ -1159,7 +1171,7 @@ https://chatgpt.com/c/67b93b9e-d320-800f-998e-e160b379198b
 	
 	export default IPFSFileUploader;
 
-
+ 
    	```
    
 
