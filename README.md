@@ -44,6 +44,9 @@ Arduino
 React
 - Problem: [HTTP polyfill error](#http-polyfill-error)
 
+IPFS
+- [IPFS Setup](#ipfs-setup)
+
 
 ## Python
 ### Create a pipenv 
@@ -1030,6 +1033,120 @@ resolve: {
 	}
 }
 ```
+
+## IPFS
+
+### IPFS Setup
+
+1. On Mac:
+   ```
+   brew install ipfs
+   ```
+
+2. Initialize IPFS repo in directory ```~/.ipfs```, which also sets up node's unique identity.
+   ```
+   ipfs init
+   ```
+3. Configure CORS to allow requests via different ports and HTTP methods from client such as a React app to access the local node.
+   ```
+   ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["http://localhost:3000"]'	# if React is on localhost 3000, or 5173 for Vite
+   ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST"]'
+   ```
+
+4. Run local IPFS node using daemon. Starts background service, make it accessible on http://localhost:PORTS -> ports 5001 (API), 8080 (Gateway), 4001 (Swarm for peer-to-peer communication)
+   ```
+   ipfs daemon
+   ```
+
+5. Can view active IPFS node via Web UI (link available in terminal after running "ipfs daemon")
+   ```
+   http://127.0.0.1:5001/webui
+   ```
+
+
+### Integrate React app with IPFS 
+1. In React project directory, install IPFS HTTP client
+   ```
+   npm install ipfs-http-client
+   ```
+
+2. Upload a file to IPFS in the React component via API localhost port (here: http://localhost:5001)
+   ```
+   	// Sample React component
+
+   	import React, { useState } from 'react';
+	import { create } from 'ipfs-http-client';
+	
+	// Configure the client to point to local IPFS node
+	const client = create({
+	  host: 'localhost',
+	  port: '5001',
+	  protocol: 'http',
+	});
+	
+	const IPFSFileUploader = () => {
+	  const [file, setFile] = useState(null);
+	  const [cid, setCid] = useState('');
+	  const [uploading, setUploading] = useState(false);
+	  const [error, setError] = useState('');
+	
+	  const onFileChange = (event) => {
+	    setFile(event.target.files[0]);
+	  };
+	
+	  const onFileUpload = async (event) => {
+	    event.preventDefault();
+	    if (!file) {
+	      setError('Please select a file to upload.');
+	      return;
+	    }
+	    setUploading(true);
+	    setError('');
+	    try {
+	      // Upload file to IPFS
+	      const added = await client.add(file);
+	      setCid(added.path);
+	    } catch (err) {
+	      console.error('Error uploading file: ', err);
+	      setError('File upload failed.');
+	    }
+	    setUploading(false);
+	  };
+	
+	  return (
+	    <div>
+	      <h2>Upload File to IPFS</h2>
+	      <form onSubmit={onFileUpload}>
+		<input type="file" onChange={onFileChange} />
+		<button type="submit" disabled={uploading}>
+		  {uploading ? 'Uploading...' : 'Upload'}
+		</button>
+	      </form>
+	      {cid && (
+		<div>
+		  <p>File uploaded successfully!</p>
+		  <p>
+		    CID: <code>{cid}</code>
+		  </p>
+		  <p>
+		    View file at:{" "}
+		    <a href={`https://ipfs.io/ipfs/${cid}`} target="_blank" rel="noopener noreferrer">
+		      https://ipfs.io/ipfs/{cid}
+		    </a>
+		  </p>
+		</div>
+	      )}
+	      {error && <p style={{ color: 'red' }}>{error}</p>}
+	    </div>
+	  );
+	};
+	
+	export default IPFSFileUploader;
+
+
+
+   ```
+   
 
 
 
