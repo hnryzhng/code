@@ -45,7 +45,8 @@ React
 - Problem: [HTTP polyfill error](#http-polyfill-error)
 
 IPFS
-- [IPFS Setup](#ipfs-setup)
+- [Setup local IPFS node](#setup-local-ipfs-node)
+- [Integrate React app with IPFS](#integrate-react-app-with-ipfs)
 
 
 ## Python
@@ -1036,7 +1037,7 @@ resolve: {
 
 ## IPFS
 
-### IPFS Setup
+### Setup local node
 
 1. On Mac:
    ```
