@@ -1037,7 +1037,7 @@ resolve: {
 
 ## IPFS
 
-### Setup local node
+### Setup local IPFS node
 
 1. On Mac:
    ```
