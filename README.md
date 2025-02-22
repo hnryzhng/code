@@ -1037,6 +1037,13 @@ resolve: {
 
 ## IPFS
 
+### IPFS Resources
+
+- IPFS comprehensive concepts (official docs): https://docs.ipfs.tech/concepts/
+
+- IPFS basic concepts + BlockFrost usage: https://blockfrost.dev/start-building/ipfs/
+
+
 ### Setup local IPFS node
 
 1. On Mac:
