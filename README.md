@@ -326,6 +326,10 @@ $ man COMMAND # read manual for command
 $ ps
 $ top # more detailed ps info
 
+# find process on port and kill process
+$ sudo lsof -i :PORT_NUM	# output: will show PID of process on this port
+$ kill -9 PID	
+
 ```
 
 ### File and Directory Navigation commands
