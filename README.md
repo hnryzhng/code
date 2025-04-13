@@ -2,6 +2,9 @@
 
 ## Sections
 
+GitHub
+- [Connect to GitHub using SSH key](#connect-to-github-using-ssh-key)
+
 Python
 - [Create a pipenv](#create-a-pipenv)
 - [Install dependencies for a Python project](#install-dependencies-for-a-python-project)
@@ -49,6 +52,31 @@ IPFS
 - [Setup local IPFS node](#setup-local-ipfs-node)
 - [Setup IPFS node cluster in the cloud](#setup-ipfs-node-cluster-in-the-cloud)
 - [Integrate React app with IPFS](#integrate-react-app-with-ipfs)
+
+## GitHub
+### Connect to GitHub using SSH key
+1. Configure GitHub identity
+```
+$ git config --global user.name "Your Name"
+$ git config --global user.email "your.email@example.com"
+```
+2. Generate SSH key (RSA shown)
+```
+$ ssh-keygen -t rsa -b 4096 -C "your.email@example.com"
+```
+3. Start SSH agent and add key (MacOS)
+```
+$ eval "$(ssh-agent -s)"
+$ ssh-add --apple-use-keychain ~/.ssh/id_rsa
+```
+
+4. Copy SSH key to add to GitHub account
+```
+$ pbcopy < ~/.ssh/id_rsa.pub
+```
+5. Add key to GitHub account
+- Go to GitHub.com account -> Settings -> SSH and GPG keys -> Add SSH key -> paste SSH public key
+
 
 
 ## Python
