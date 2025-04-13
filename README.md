@@ -3,7 +3,7 @@
 ## Sections
 
 GitHub
-- [Connect to GitHub using SSH key](#connect-to-github-using-ssh-key)
+- [Connect to GitHub via CLI using SSH key](#connect-to-github-via-cli-using-ssh-key)
 
 Python
 - [Create a pipenv](#create-a-pipenv)
@@ -54,7 +54,8 @@ IPFS
 - [Integrate React app with IPFS](#integrate-react-app-with-ipfs)
 
 ## GitHub
-### Connect to GitHub using SSH key
+### Connect to GitHub via CLI using SSH key
+0. Assumes Git CLI is installed in MacOS.
 1. Configure GitHub identity
 ```
 $ git config --global user.name "Your Name"
