@@ -17,6 +17,9 @@ AWS
 - Problem: [Unable to import module into Lambda function](#unable-to-import-module-into-lambda-function)
 - Problem: [Unable to import psycopg2 connecting Python Lambda to Postgresql database](#unable-to-import-psycopg2-connecting-python-lambda-to-postgresql-database)
 
+AI
+- [Multi-Agent Workflow and Setup](#multi-agent-workflow-and-setup)
+
 Linux shell scripts
 - [Linux commands cheatsheet](#linux-commands-cheatsheet)
 - [Shell scripting](#shell-scripting)
@@ -336,6 +339,11 @@ Instructions:
 5. Move the psycopg2 folder and its contents to the Lambda function’s virtualenv/lib/python-VERSION/site-packages/ (e.g., virtualenv/lib/python-3.11/site-packages/)
 6. Created zipped deployment package ($bash build.sh)
 
+## AI
+
+### Multi-Agent Workflow and Project Setup
+
+Project setup: [Agentic Template App](https://github.com/hnryzhng/agentic-template-app/tree/main)
 
 
 ## Linux commands cheatsheet
