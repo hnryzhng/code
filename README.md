@@ -341,7 +341,7 @@ Instructions:
 
 ## AI
 
-### Multi-Agent Workflow and Project Setup
+### Multi-Agent Workflow and Setup
 
 Project setup: [Agentic Template App](https://github.com/hnryzhng/agentic-template-app/tree/main)
 
